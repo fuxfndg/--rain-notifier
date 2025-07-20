@@ -3,16 +3,16 @@ FROM selenium/standalone-chrome:latest
 USER root
 WORKDIR /app
 
-# Спочатку копіюємо тільки dependencies-файл
+# Копіюємо файл з залежностями
 COPY requirements.txt .
 
-# Встановлюємо Python, pip та залежності
+# Встановлюємо Python, pip і залежності
 RUN apt update && \
     apt install -y python3 python3-pip && \
     pip3 install --no-cache-dir -r requirements.txt
 
-# Тепер копіюємо весь код
+# Копіюємо інші файли проекту
 COPY . .
 
-# Стартова команда
+# Запускаємо бота
 CMD ["python3", "rain_pinger.py"]
